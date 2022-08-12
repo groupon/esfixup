@@ -1,4 +1,7 @@
 node_modules/
 npm-debug.log
 /.nyc_output
+/target
+.vscode
+/coverage
 grpn-create.log

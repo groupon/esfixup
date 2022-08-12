@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "allowJs": true,
+    "checkJs": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "types": [
+      "node",
+      "mocha"
+    ],
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "declarationDir": "lib/typedefs",
+    "lib": null
+  },
+  "include": [
+    "typings/**/*.d.ts",
+    "*.js",
+    "lib/**/*.js"
+  ],
+  "extends": "@tsconfig/node14",
+  "exclude": [
+    "test"
+  ]
+}

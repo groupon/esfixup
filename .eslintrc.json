@@ -1,7 +1,15 @@
 {
-  "root": true,
   "extends": [
     "groupon",
     "plugin:regexp/recommended"
-  ]
+  ],
+  "overrides": [
+    {
+      "files": "*.test.js",
+      "env": {
+        "mocha": true
+      }
+    }
+  ],
+  "root": true
 }

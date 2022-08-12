@@ -1,9 +1,10 @@
 {
   "name": "esfixup",
   "version": "0.0.0",
-  "description": "Esfixup",
+  "description": "ES Code Transformer, Upgrader, Fixer",
   "license": "BSD-3-Clause",
-  "main": "lib/esfixup.js",
+  "main": "lib/transform.js",
+  "bin": "./cli.js",
   "homepage": "https://github.com/groupon/esfixup",
   "repository": {
     "type": "git",
@@ -14,34 +15,93 @@
   },
   "scripts": {
     "lint": "npm-run-all lint:*",
+    "lint:tsc": "rm -rf lib/typedefs && tsc",
     "lint:js": "eslint .",
+    "lint:typedefs": "prettier --write --check --single-quote typings/*.d.ts",
     "pretest": "npm-run-all pretest:*",
     "pretest:lint": "npm-run-all lint:*",
+    "test": "npm-run-all test:*",
+    "test:unit": "c8 mocha",
     "posttest": "npm-run-all posttest:*",
     "posttest:nlm": "nlm verify"
   },
+  "c8": {
+    "reporter": [
+      "text",
+      "json-summary"
+    ],
+    "exclude": [
+      "example{,s,-app}/**",
+      "**/*.d.ts",
+      "**/*{.,-,c}{spec,test}.{js,cjs,mjs,ts}",
+      "{spec,test}{,s}/**"
+    ]
+  },
   "engines": {
-    "node": ">=12.22"
+    "node": ">=14"
+  },
+  "mocha": {
+    "recursive": true,
+    "exit": true,
+    "timeout": 5000
   },
   "nlm": {
     "license": {
       "files": [
         "lib"
+      ],
+      "exclude": [
+        "lib/**/*.d.ts"
       ]
     }
   },
-  "dependencies": {},
-  "devDependencies": {
+  "types": "lib/typedefs/lib/transform.d.ts",
+  "dependencies": {
+    "@babel/core": "^7.13.8",
+    "@babel/parser": "^7.12.17",
+    "@babel/plugin-syntax-typescript": "^7.16.0",
+    "@babel/plugin-transform-react-jsx": "^7.12.17",
+    "@babel/preset-env": "^7.13.9",
+    "@babel/template": "^7.12.13",
+    "@babel/types": "^7.6.3",
+    "chalk": "^4.1.0",
+    "commander": "^4.1.1",
+    "debug": "^4.3.1",
+    "decaffeinate": "^8.1.1",
     "eslint": "^7.29.0",
     "eslint-config-groupon": "^11.0.4",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-mocha": "^9.0.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "globby": "^11.0.2",
+    "is-builtin-module": "^3.0.0",
+    "lodash.camelcase": "^4.3.0",
+    "lodash.sortby": "^4.7.0",
+    "pkg-up": "^3.1.0",
+    "prettier": "^2.3.1",
+    "semver": "^7.3.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@tsconfig/node14": "^1.0.0",
+    "@types/babel__core": "^7.1.3",
+    "@types/babel__template": "^7.0.2",
+    "@types/debug": "^4.1.7",
+    "@types/eslint": "^6.1.3",
+    "@types/lodash.camelcase": "^4.3.6",
+    "@types/lodash.sortby": "^4.7.6",
+    "@types/mocha": "^9.0.1",
+    "@types/node": "^14",
+    "@types/semver": "^6.2.0",
+    "c8": "^7.7.3",
     "eslint-plugin-regexp": "^1.4.1",
+    "mocha": "^9.0.1",
     "nlm": "^5.5.1",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.3.1"
+    "tempy": "^1.0.0",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.3"
   },
   "author": {
     "name": "David Bushong",
@@ -49,8 +109,8 @@
   },
   "files": [
     "*.js",
-    "*.d.ts",
-    "lib"
+    "lib",
+    "*.d.ts"
   ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
