@@ -1,6 +1,6 @@
 {
   "name": "esfixup",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "ES Code Transformer, Upgrader, Fixer",
   "license": "BSD-3-Clause",
   "main": "lib/transform.js",

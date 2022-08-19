@@ -1,3 +1,6 @@
+[![nlm-github](https://img.shields.io/badge/github-groupon%2Fesfixup%2Fissues-F4D03F?logo=github&logoColor=white)](https://github.com/groupon/esfixup/issues)
+![nlm-node](https://img.shields.io/badge/node-%3E%3D14-blue?logo=node.js&logoColor=white)
+![nlm-version](https://img.shields.io/badge/version-1.0.0-blue?logo=version&logoColor=white)
 # `esfixup`
 
 > CLI to transform/port/upgrade/improve your existing JavaScript (or convert
